@@ -10,20 +10,16 @@ import UIKit
 
 class personDataTableViewCell: UITableViewCell {
 
-    
+    var dataCell:personData?
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var profileImageCell: UIImageView!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
+//        mapDataToCell()
         convertProfileImageToCircular()
-      //  self.layer.borderWidth = 0.5
-      //  self.layer.borderColor = UIColor.black.cgColor
-      //  self.layer.cornerRadius = 20
-        
         
     }
     
@@ -41,6 +37,14 @@ class personDataTableViewCell: UITableViewCell {
         profileImageCell.clipsToBounds = true
         
     }
+    
+//    func mapDataToCell() {
+//        nameLabel.text = dataCell?.firstName
+//        nameLabel.text?.append("\(String(describing: dataCell?.lastName))")
+//        bioLabel.text = dataCell?.bio
+//        numberLabel.text = dataCell?.number
+//        profileImageCell.image = UIImage(named: dataCell?.image ?? "" ) ?? UIImage(named: "Default")
+//    }
 
 }
 

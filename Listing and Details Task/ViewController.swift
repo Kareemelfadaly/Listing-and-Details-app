@@ -11,9 +11,6 @@ import UIKit
 
 class ViewController: UIViewController {
     var finalData:[personData] = []
-
- 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +19,12 @@ class ViewController: UIViewController {
         
     }
     
-    
     func getData() -> [personData] {
         var data : [personData] = []
         
         let kareem = personData(fisrtName: "Kareem ", lastName: "Elfadaly", number: "01128232739", bio: "ka2en ya3esh w yat3ayash .", email: "kareemelfadaly@gmail.com", twitterAcc: "https://twitter.com/KareemElfadaly", image: "1")
         
-         let Ahmed = personData(fisrtName: "Ahmed ", lastName: "Saleh", number: "01276598364", bio: "perfect person with a complicated mind .", email: "ahmedsaleh@gmail.com", twitterAcc: "https://twitter.com/AhmedSaleh", image: "2")
+         let Ahmed = personData(fisrtName: "Ahmed ", lastName: "Saleh", number: "01276598364", bio: "perfect person with a complic mind .", email: "ahmedsaleh@gmail.com", twitterAcc: "https://twitter.com/AhmedSaleh", image: "2")
         
         let Sara = personData(fisrtName: "Sara ", lastName: "Ahmed", number: "01234686574", bio: "شخصية عندية بتحب  الشوكولاتة مثلا اي حاجه هاها 😅 وعايشه برا مصر . ", email: "saraahmed@gmail.com", twitterAcc: "https://twitter.com/SaraAhmed", image: "3")
         
@@ -55,6 +51,7 @@ extension ViewController: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell" , for: indexPath) as! personDataTableViewCell
+//        cell.dataCell = finalData[indexPath.row]
         
         cell.nameLabel.text = finalData[indexPath.row].firstName
         cell.nameLabel.text?.append(finalData[indexPath.row].lastName!)
@@ -68,16 +65,8 @@ extension ViewController: UITableViewDelegate , UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let des = segue.destination as? DetailsViewController {
             if let indexPath = sender as? IndexPath {
-                des.firstName = finalData[indexPath.row].firstName
-                des.lastName = finalData[indexPath.row].lastName
-                des.bio = finalData[indexPath.row].bio
-                des.number = finalData[indexPath.row].number
-                des.email = finalData[indexPath.row].email
-                des.twitter = finalData[indexPath.row].twitterAcc
-                des.image = finalData[indexPath.row].image
-                
+                des.data = finalData[indexPath.row]
             }
-
         }
     }
     

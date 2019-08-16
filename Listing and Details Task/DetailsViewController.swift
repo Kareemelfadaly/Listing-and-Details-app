@@ -10,13 +10,7 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
-    var firstName : String?
-    var lastName : String?
-    var number : String?
-    var email : String?
-    var twitter : String?
-    var bio : String?
-    var image : String?
+    var data:personData?
     
     @IBOutlet weak var profileDetail: UIImageView!
     @IBOutlet weak var fisrtNamelabel: UILabel!
@@ -25,21 +19,18 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var mobileNumberLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var twitterButton: UIButton!
-    
+    @IBOutlet weak var changeNameTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         convertProfileImageToCircular()
         mappingDataModelToTheView()
-        mapCorrectprofileImage()
-    
+        
     }
-    
     @IBAction func didPressTwitterButton(_ sender: Any) {
-        if let url = URL(string: "\(twitter!)") {
+        if let url = URL(string: "\(data?.twitterAcc! ?? "" )") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
-        
     }
     
     func convertProfileImageToCircular() {
@@ -48,24 +39,22 @@ class DetailsViewController: UIViewController {
         profileDetail.layer.borderColor = UIColor.white.cgColor
         profileDetail.layer.cornerRadius = profileDetail.frame.height/2
         profileDetail.clipsToBounds = true
-        
     }
     
     func mappingDataModelToTheView() {
-        fisrtNamelabel.text = firstName
-        lastNameLabel.text = lastName
-        bioDetailsLabel.text = bio
-        mobileNumberLabel.text = number
-        emailLabel.text = email
-        //  print(twitter!.dropFirst(20))
-        twitterButton.setTitle("\(twitter!.dropFirst(20))", for: .normal)
         
-    }
-    
-    func mapCorrectprofileImage() {
-        profileDetail.image = UIImage(named: image ?? "") ?? UIImage(named: "Default")
+        fisrtNamelabel.text = data?.firstName
+        lastNameLabel.text = data?.lastName
+        bioDetailsLabel.text = data?.bio
+        mobileNumberLabel.text = data?.number
+        emailLabel.text = data?.email
+        twitterButton.setTitle("\( data?.twitterAcc!.dropFirst(20) ?? "" )", for: .normal)
+        profileDetail.image = UIImage(named: data?.image ?? "") ?? UIImage(named: "Default")
 
     }
     
+    @IBAction func ChangeName(_ sender: Any) {
+        
+    }
     
 }
