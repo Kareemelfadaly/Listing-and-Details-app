@@ -8,8 +8,8 @@
 
 import UIKit
 
-class personDataTableViewCell: UITableViewCell {
-
+class personDataTableViewCell: UITableViewCell  {
+    
     var dataCell:personData?
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
@@ -18,7 +18,6 @@ class personDataTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        mapDataToCell()
         convertProfileImageToCircular()
         
     }
@@ -38,13 +37,13 @@ class personDataTableViewCell: UITableViewCell {
         
     }
     
-//    func mapDataToCell() {
-//        nameLabel.text = dataCell?.firstName
-//        nameLabel.text?.append("\(String(describing: dataCell?.lastName))")
-//        bioLabel.text = dataCell?.bio
-//        numberLabel.text = dataCell?.number
-//        profileImageCell.image = UIImage(named: dataCell?.image ?? "" ) ?? UIImage(named: "Default")
-//    }
+    func mapDataToCell() {
+        nameLabel.text = dataCell?.firstName
+        nameLabel.text?.append("\(String(describing: dataCell?.lastName ?? "" ) )")
+        bioLabel.text = dataCell?.bio
+        numberLabel.text = dataCell?.number
+        profileImageCell.image = UIImage(named: dataCell?.image ?? "" ) ?? UIImage(named: "Default")
+    }
 
 }
 

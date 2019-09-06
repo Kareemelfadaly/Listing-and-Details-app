@@ -8,9 +8,10 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
-
+class DetailsViewController: UIViewController  {
+    
     var data:personData?
+    var delegate:detailsViewControllerDataSource?
     
     @IBOutlet weak var profileDetail: UIImageView!
     @IBOutlet weak var fisrtNamelabel: UILabel!
@@ -21,10 +22,12 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var twitterButton: UIButton!
     @IBOutlet weak var changeNameTextField: UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         convertProfileImageToCircular()
         mappingDataModelToTheView()
+        
         
     }
     @IBAction func didPressTwitterButton(_ sender: Any) {
@@ -54,7 +57,30 @@ class DetailsViewController: UIViewController {
     }
     
     @IBAction func ChangeName(_ sender: Any) {
+        if delegate != nil {
+            if changeNameTextField.text != "" {
+                splitNewName()
+                delegate?.change(Name: "\(data?.firstName ?? "") \(data?.lastName ?? "") ")
+            } else {
+                changeNameTextField.placeholder = "please write first and last name"
+            }
+    }
         
     }
-    
+    func splitNewName() {
+        var name = changeNameTextField.text?.split(separator: " ")
+        if name?.count == 1 {
+            changeNameTextField.text = ""
+            changeNameTextField.placeholder = "please write first and last name"
+        }
+        else {
+            changeNameTextField.placeholder = "change your full name"
+            data?.firstName = String(name?[0] ?? "")
+            data?.firstName?.append(" ")
+            data?.lastName = String(name?[1] ?? "")
+            navigationController?.popViewController(animated: true)
+        }
+    }
 }
+
+

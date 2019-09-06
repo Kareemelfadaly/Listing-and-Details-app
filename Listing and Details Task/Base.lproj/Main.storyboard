@@ -112,6 +112,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="CONTACTS" id="8L0-E5-fM6"/>
                     <connections>
+                        <outlet property="tableView" destination="jRJ-KL-Day" id="Y4L-XT-CAp"/>
                         <segue destination="TD9-3W-cMZ" kind="show" identifier="goToDetailsScreen" id="QTe-U4-4dR"/>
                     </connections>
                 </viewController>
@@ -227,7 +228,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Change your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sxO-Jq-T3I">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Change your full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sxO-Jq-T3I">
                                                 <rect key="frame" x="20" y="179" width="221" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="4ie-hI-kDd"/>
@@ -244,7 +245,8 @@
                                                 </constraints>
                                                 <state key="normal" title="Save"/>
                                                 <connections>
-                                                    <action selector="ChangeName:" destination="TD9-3W-cMZ" eventType="touchUpInside" id="pDT-nz-vdD"/>
+                                                    <action selector="ChangeName:" destination="TD9-3W-cMZ" eventType="touchUpInside" id="HB1-3z-sW5"/>
+                                                    <segue destination="vNg-Eb-R0f" kind="unwind" unwindAction="unwindsegueToCells:" id="uFW-U4-zzG"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -321,6 +323,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GuJ-L4-R0u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vNg-Eb-R0f" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1629.375" y="113.02816901408451"/>
         </scene>

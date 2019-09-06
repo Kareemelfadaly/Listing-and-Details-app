@@ -10,13 +10,18 @@ import UIKit
 
 
 class ViewController: UIViewController {
-    var finalData:[personData] = []
+    @IBOutlet weak var tableView: UITableView!
     
+    var finalData:[personData] = []
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         finalData = getData()
         
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     func getData() -> [personData] {
@@ -43,7 +48,14 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: UITableViewDelegate , UITableViewDataSource {
+extension ViewController: UITableViewDelegate , UITableViewDataSource , detailsViewControllerDataSource  {
+    
+    func change(Name: String) {
+        let dataPassed = Name
+        print(dataPassed)
+    }
+    
+   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return finalData.count
@@ -51,21 +63,18 @@ extension ViewController: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell" , for: indexPath) as! personDataTableViewCell
-//        cell.dataCell = finalData[indexPath.row]
+        cell.dataCell = finalData[indexPath.row]
         
-        cell.nameLabel.text = finalData[indexPath.row].firstName
-        cell.nameLabel.text?.append(finalData[indexPath.row].lastName!)
-        cell.bioLabel.text = finalData[indexPath.row].bio
-        cell.numberLabel.text = finalData[indexPath.row].number
-        cell.profileImageCell.image = UIImage(named: finalData[indexPath.row].image ?? "") ?? UIImage(named: "Default")
+        cell.mapDataToCell()
         
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let des = segue.destination as? DetailsViewController {
+            des.delegate = self
             if let indexPath = sender as? IndexPath {
-                des.data = finalData[indexPath.row]
+            des.data = finalData[indexPath.row]
             }
         }
     }
@@ -74,6 +83,6 @@ extension ViewController: UITableViewDelegate , UITableViewDataSource {
         performSegue(withIdentifier: "goToDetailsScreen", sender: indexPath)
     }
     
-   
-}
 
+  
+}
