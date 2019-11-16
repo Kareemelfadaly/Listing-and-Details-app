@@ -61,6 +61,7 @@ class DetailsViewController: UIViewController  {
             if changeNameTextField.text != "" {
                 splitNewName()
                 delegate?.change(Name: "\(data?.firstName ?? "") \(data?.lastName ?? "") ")
+                
             } else {
                 changeNameTextField.placeholder = "please write first and last name"
             }

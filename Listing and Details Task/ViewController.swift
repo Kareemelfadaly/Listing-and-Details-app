@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         
         let Mohamed = personData(fisrtName: "Mohamed ", lastName: "azam", number: "01038352064", bio: "Numerous methodologies have been developed over the years to meet the demands of these fields, such as Enzyme-Linked Immunosorbent Assays (ELISA) .", email: "mohamedazam@gmail.com", twitterAcc: "https://twitter.com/MohamedAzam", image: "sdthrhb")
         
-        data = [kareem,Ahmed,Sara,Hassan,Gamal,Khaled,Mohamed]
+        data = [kareem,Ahmed,Sara,Hassan,Gamal,Khaled,Mohamed, kareem , Gamal, Ahmed , Hassan, Khaled]
         return data
     }
     
@@ -75,6 +75,8 @@ extension ViewController: UITableViewDelegate , UITableViewDataSource , detailsV
             des.delegate = self
             if let indexPath = sender as? IndexPath {
             des.data = finalData[indexPath.row]
+                
+            
             }
         }
     }
